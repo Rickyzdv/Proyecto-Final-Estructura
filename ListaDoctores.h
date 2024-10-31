@@ -1,15 +1,18 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include"Paciente.h"
 using namespace std;
 
-struct Doctor {
+struct Doctor : public Paciente
+{
     string id;
     string nombre;
     Doctor* siguiente;
 };
 
-class ListaDoctores {
+class ListaDoctores: public Paciente
+{
 public:
     ListaDoctores();
     void InsertarDoctorInicio(string id, string nombre);
@@ -19,5 +22,6 @@ public:
     void MostrarDoctores();
 
 private:
+protected:
     Doctor* cabecera, *final, *nodo;
 };
