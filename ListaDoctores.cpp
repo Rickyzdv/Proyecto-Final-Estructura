@@ -5,12 +5,10 @@ ListaDoctores::ListaDoctores()
     cabecera = final = NULL;
 }
 
-void ListaDoctores::InsertarDoctorInicio(string id, string nombre)
+void ListaDoctores::InsertarDoctorInicio(Doctor nuevo)
 {
-    Doctor* nodo = new Doctor;
-    nodo->id = id;
-    nodo->nombre = nombre;
-    nodo->siguiente = cabecera;
+    nodo = new Doctor;
+    *nodo = nuevo;
     cabecera = nodo;
     if (final == NULL) 
     {
@@ -41,7 +39,7 @@ Doctor* ListaDoctores::ExtraerInter(string id)
     }
 
     Doctor* nodoAnterior = NULL;
-    Doctor* nodo = cabecera;
+    nodo = cabecera;
 
     while (nodo != NULL) 
     {
@@ -76,7 +74,7 @@ Doctor* ListaDoctores::ExtraerFinal()
     }
 
     Doctor* nodoAnterior = NULL;
-    Doctor* nodo = cabecera;
+    nodo = cabecera;
 
     while (nodo->siguiente != final) 
     {
@@ -97,7 +95,7 @@ void ListaDoctores::MostrarDoctores()
         cout << "\n\tNo hay doctores disponibles." << endl;
         return;
     }
-    Doctor* nodo = cabecera;
+    nodo = cabecera;
     while (nodo != NULL) 
     {
         cout << "\tID: " << nodo->id;

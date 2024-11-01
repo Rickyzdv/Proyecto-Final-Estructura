@@ -5,13 +5,10 @@ HistorialAtencion::HistorialAtencion()
 	tope = NULL;
 }
 
-void HistorialAtencion::InsertarAtencion(string fecha, float peso, int edad, string tratamiento)
+void HistorialAtencion::InsertarAtencion(Atencion nuevo)
 {
     nodo = new Atencion;
-    nodo->fecha = fecha;
-    nodo->peso = peso;
-    nodo->edad = edad;
-    nodo->tratamiento = tratamiento;
+    *nodo = nuevo;
     nodo->anterior = tope;
     tope = nodo;
 }

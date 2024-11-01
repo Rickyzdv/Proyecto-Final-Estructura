@@ -8,6 +8,7 @@ struct Doctor : public Paciente
 {
     string id;
     string nombre;
+    char especialidad; // La letra inicial de cada especialidad de doctor que pongamos
     Doctor* siguiente;
 };
 
@@ -15,7 +16,7 @@ class ListaDoctores: public Paciente
 {
 public:
     ListaDoctores();
-    void InsertarDoctorInicio(string id, string nombre);
+    void InsertarDoctorInicio(Doctor);
     Doctor* ExtraerInicio();
     Doctor* ExtraerInter(string id);
     Doctor* ExtraerFinal();

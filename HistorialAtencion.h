@@ -8,6 +8,7 @@ struct Atencion {
     float peso;
     int edad;
     string tratamiento;
+    char especialidadDoc;
     Atencion* anterior;
 };
 
