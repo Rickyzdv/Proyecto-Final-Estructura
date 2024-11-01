@@ -5,10 +5,15 @@ using namespace std;
 
 struct Paciente
 {
-	string id;
-	string nombre; 
+	string id_paciente;
+	string nombre;
 	string enfermedad;
-	Paciente* siguiente;
+};
+
+struct elemento
+{
+	Paciente datos;
+	elemento* siguiente;
 };
 
 class ColaPacientes
@@ -16,12 +21,12 @@ class ColaPacientes
 public:
 	ColaPacientes();
 	void InsertarPaciente(Paciente nuevo);
-	Paciente ConsultarSiguiente();
+	elemento ConsultarSiguiente();
 	Paciente ExtraerPaciente();
 	void MostrarPacientes();
 
 private:
-	Paciente* principio , * final, * nodo;
+	elemento* principio , * final, * nodo;
 };
 
 

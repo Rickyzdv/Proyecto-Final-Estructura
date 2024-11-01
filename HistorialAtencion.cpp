@@ -7,8 +7,8 @@ HistorialAtencion::HistorialAtencion()
 
 void HistorialAtencion::InsertarAtencion(Atencion nuevo)
 {
-    nodo = new Atencion;
-    *nodo = nuevo;
+    nodo = new elemento_atencion;
+    nodo->datos = nuevo;
     nodo->anterior = tope;
     tope = nodo;
 }
@@ -24,7 +24,7 @@ Atencion HistorialAtencion::ExtraerAtencion()
         return extraido;
     }
     nodo = tope;
-    extraido = *nodo;
+    extraido = nodo->datos;
     tope = nodo->anterior;
     delete nodo;
     return extraido;
@@ -37,12 +37,12 @@ void HistorialAtencion::MostrarHistorial()
         cout << "\n\tEl historial está vacío" << endl;
         return;
     }
-    Atencion* nodo = tope;
+    nodo = tope;
     while (nodo != NULL) {
-        cout << "\tFecha: " << nodo->fecha;
-        cout << "\tPeso: " << nodo->peso;
-        cout << "\tEdad: " << nodo->edad;
-        cout << "\tTratamiento: " << nodo->tratamiento << endl;
+        cout << "\tFecha: " << nodo->datos.fecha;
+        cout << "\tPeso: " << nodo->datos.peso;
+        cout << "\tEdad: " << nodo->datos.edad;
+        cout << "\tTratamiento: " << nodo->datos.tratamiento << endl;
         nodo = nodo->anterior;
     }
 }

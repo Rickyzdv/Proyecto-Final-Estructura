@@ -6,23 +6,27 @@ using namespace std;
 
 struct Doctor : public Paciente
 {
-    string id;
+    string id_doctor;
     string nombre;
     char especialidad; // La letra inicial de cada especialidad de doctor que pongamos
-    Doctor* siguiente;
 };
 
-class ListaDoctores: public Paciente
+struct elemento_doctor
+{
+    Doctor datos;
+    elemento_doctor* siguiente;
+};
+
+class ListaDoctores
 {
 public:
     ListaDoctores();
     void InsertarDoctorInicio(Doctor);
-    Doctor* ExtraerInicio();
-    Doctor* ExtraerInter(string id);
-    Doctor* ExtraerFinal();
+    Doctor ExtraerInicio();
+    Doctor ExtraerInter(string id);
+    Doctor ExtraerFinal();
     void MostrarDoctores();
 
 private:
-protected:
-    Doctor* cabecera, *final, *nodo;
+    elemento_doctor* cabecera, *final, *nodo;
 };

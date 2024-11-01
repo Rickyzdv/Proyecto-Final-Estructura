@@ -7,8 +7,9 @@ ListaDoctores::ListaDoctores()
 
 void ListaDoctores::InsertarDoctorInicio(Doctor nuevo)
 {
-    nodo = new Doctor;
-    *nodo = nuevo;
+    nodo = new elemento_doctor;
+    nodo->datos = nuevo;
+    nodo->siguiente = cabecera;
     cabecera = nodo;
     if (final == NULL) 
     {
@@ -16,76 +17,106 @@ void ListaDoctores::InsertarDoctorInicio(Doctor nuevo)
     }
 }
 
-Doctor* ListaDoctores::ExtraerInicio()
+Doctor ListaDoctores::ExtraerInicio()
 {
+    Doctor aux;
+    aux.enfermedad = " ";
+    aux.especialidad = '-1';
+    aux.id_doctor = " ";
+    aux.nombre = " ";
+
+
     if (cabecera == NULL) 
     {
-        return NULL;
+        return aux;
     }
-    Doctor* extraido = cabecera;
-    cabecera = cabecera->siguiente;
-    if (cabecera == NULL) 
-    {
-        final = NULL;
-    }
-    return extraido;
+    nodo = cabecera;
+    aux = nodo->datos;
+    cabecera = nodo->siguiente;
+
+    delete nodo;
+
+    return aux;
 }
 
-Doctor* ListaDoctores::ExtraerInter(string id)
+Doctor ListaDoctores::ExtraerInter(string id)
 {
-    if (cabecera == NULL) 
-    {
-        return NULL;
-    }
+    Doctor aux;
+    aux.enfermedad = " ";
+    aux.especialidad = '-1';
+    aux.id_doctor = " ";
+    aux.nombre = " ";
 
-    Doctor* nodoAnterior = NULL;
+    bool found = false;
+
+    elemento_doctor *nodoAnterior = NULL;
     nodo = cabecera;
 
     while (nodo != NULL) 
     {
-        if (nodo->id == id) {
-            if (nodo == cabecera) 
-            {
-                return ExtraerInicio();
-            }
-            if (nodo == final) 
-            {
-                return ExtraerFinal();
-            }
-
-            nodoAnterior->siguiente = nodo->siguiente;
-            return nodo;
+        if (nodo->datos.id_doctor == id) {
+            found = true;
+            break;
         }
         nodoAnterior = nodo;
         nodo = nodo->siguiente;
     }
-    return NULL;
+    
+    if (found == false)
+    {
+        return aux;
+    }
+
+    if (nodo == cabecera)
+    {
+        aux = ExtraerInicio();
+        return aux;
+    }
+
+    if (nodo == final)
+    {
+        aux = ExtraerFinal();
+        return aux;
+    }
+
+    aux = nodo->datos;
+    nodoAnterior->siguiente = nodo->siguiente;
+
+    delete nodo;
+    return aux;
 }
 
-Doctor* ListaDoctores::ExtraerFinal()
+Doctor ListaDoctores::ExtraerFinal()
 {
+    Doctor aux;
+    aux.enfermedad = " ";
+    aux.especialidad = '-1';
+    aux.id_doctor = " ";
+    aux.nombre = " ";
+
     if (cabecera == NULL) 
     {
-        return NULL;
+        return aux;
     }
     if (cabecera == final)
     {
-        return ExtraerInicio();
+        aux = ExtraerInicio();
+        return aux;
     }
 
-    Doctor* nodoAnterior = NULL;
+    elemento_doctor* nodoAnterior = NULL;
     nodo = cabecera;
 
-    while (nodo->siguiente != final) 
+    while (nodo != final) 
     {
         nodoAnterior = nodo;
         nodo = nodo->siguiente;
     }
 
     nodoAnterior->siguiente = NULL;
-    Doctor* extraido = final;
+    aux = nodo->datos;
     final = nodoAnterior;
-    return extraido;
+    return aux;
 }
 void ListaDoctores::MostrarDoctores()
 {
@@ -98,8 +129,18 @@ void ListaDoctores::MostrarDoctores()
     nodo = cabecera;
     while (nodo != NULL) 
     {
-        cout << "\tID: " << nodo->id;
-        cout << "\tNombre: " << nodo->nombre << endl;
+        cout << "\tID: " << nodo->datos.id_doctor;
+        cout << "\tNombre: " << nodo->datos.nombre;
+        if (nodo == cabecera)
+        {
+            cout << "\t<- primero";
+        }
+        if (nodo == final)
+        {
+            cout << "\t<- último";
+        }
+        cout << endl;
+        cout << endl;
         nodo = nodo->siguiente;
     }
 }

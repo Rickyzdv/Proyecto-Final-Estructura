@@ -7,9 +7,11 @@ ColaPacientes::ColaPacientes()
 
 void ColaPacientes::InsertarPaciente(Paciente nuevo)
 {
-    nodo->id = nuevo.id;
-    nodo->nombre = nuevo.nombre;
-    nodo->enfermedad = nuevo.enfermedad;
+    nodo = new elemento;
+
+    nodo->datos.id_paciente = nuevo.id_paciente;
+    nodo->datos.nombre = nuevo.nombre;
+    nodo->datos.enfermedad = nuevo.enfermedad;
     nodo->siguiente = NULL;
     if (principio == NULL) 
     {
@@ -22,13 +24,13 @@ void ColaPacientes::InsertarPaciente(Paciente nuevo)
     final = nodo;
 }
 
-Paciente ColaPacientes::ConsultarSiguiente()
+elemento ColaPacientes::ConsultarSiguiente()
 {
-    Paciente consulta;
+    elemento consulta;
     if (principio == NULL) {
-        consulta.id = "";
-        consulta.nombre = "";
-        consulta.enfermedad = "";
+        consulta.datos.id_paciente = "";
+        consulta.datos.nombre = "";
+        consulta.datos.enfermedad = "";
         return consulta;
     }
 	return *principio;
@@ -38,18 +40,21 @@ Paciente ColaPacientes::ExtraerPaciente()
 {
     Paciente extraido;
     if (principio == NULL) {
-        extraido.id = "";
+        extraido.id_paciente = "";
         extraido.nombre = "";
         extraido.enfermedad = "";
         return extraido;
     }
     nodo = principio;
-    extraido = *nodo;
+    extraido = nodo->datos;
     principio = nodo->siguiente;
-    if (principio == NULL) {
+    if (principio == NULL) 
+    {
         final = NULL;
     }
+
     delete nodo;
+
     return extraido;
 }
 
@@ -60,11 +65,11 @@ void ColaPacientes::MostrarPacientes()
         cout << "\n\tNo hay pacientes en espera." << endl;
         return;
     }
-    Paciente* nodo = principio;
+    nodo = principio;
     while (nodo != NULL) {
-        cout << "\tID: " << nodo->id;
-        cout << "\tNombre: " << nodo->nombre;
-        cout << "\tEnfermedad: " << nodo->enfermedad;
+        cout << "\tID: " << nodo->datos.id_paciente;
+        cout << "\tNombre: " << nodo->datos.nombre;
+        cout << "\tEnfermedad: " << nodo->datos.enfermedad;
         if (nodo == principio) cout << "\t<- primero";
         if (nodo == final) cout << "\t<- último";
         cout << endl;
