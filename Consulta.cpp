@@ -134,8 +134,11 @@ void Consulta::mostrar()
 	nodo = cabecera;
 	while (nodo!=NULL)
 	{
-		cout << nodo->datos.datos_doctor.id_doctor;
-		cout << nodo->datos.datos_paciente.id_paciente;
+		cout << "\tId doctor: "<<nodo->datos.datos_doctor.id_doctor;
+		cout << "\tNombre doctor: " << nodo->datos.datos_doctor.nombre;
+		cout << "\tId paciente: "<<nodo->datos.datos_paciente.id_paciente;
+		cout << "\tNombre paciente: " << nodo->datos.datos_paciente.nombre;
+
 		if (nodo == cabecera)
 		{
 			cout << "\t<-cabecera";

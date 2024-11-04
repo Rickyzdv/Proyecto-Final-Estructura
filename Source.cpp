@@ -4,6 +4,7 @@
 #include"ListaDoctores.h"
 #include"Paciente.h"
 #include"Consulta.h"
+#include"lista_pacientes.h"
 
 using namespace std;
 
@@ -46,8 +47,14 @@ int main()
 	//OPCIONAL
 	//ARCHIVOS, REPORTE EN TXT
 
+
+
 	bool band = true;
+	bool submenu = true;
+	bool found = false;
+	int cont = 0;
 	int opc;
+	int opc2;
 
 	Paciente dato_paciente;
 	Doctor dato_doctor;
@@ -60,120 +67,123 @@ int main()
 	Consulta objeto_consulta;
 	ListaDoctores objeto_doctores;
 	ColaPacientes objeto_pacientes;
+	lista_pacientes lista_espera;
+
+	dato_doctor.id_doctor = "Id prueba";
+	dato_doctor.nombre = "Nombre Prueba";
+	dato_doctor.especialidad = 'o';
+
+	objeto_doctores.InsertarDoctorInicio(dato_doctor);
+
+	dato_doctor.id_doctor = "Id prueba2";
+	dato_doctor.nombre = "Nombre Prueba";
+	dato_doctor.especialidad = 'e';
+
+	objeto_doctores.InsertarDoctorInicio(dato_doctor);
+
+	dato_doctor.id_doctor = "Id prueba3";
+	dato_doctor.nombre = "Nombre Prueba";
+	dato_doctor.especialidad = 't';
+
+	objeto_doctores.InsertarDoctorInicio(dato_doctor);
 
 	while (band)
 	{
-		cout << "1.Insertar Paciente  2.Insertar doctor  3.Extraer Paciente  4.Extraer Doctor  5.Mostrar  6.Insertar consulta  7.Extraer Consulta  8.Mostrar consulta  9.Terminar" << endl;
+		submenu = true;
+		found = false;
+		cout << "1.Insertar Paciente  2.Empezar consulta  3.Terminar Consulta  4.Mostrar doctores  5.Mostrar lista de espera  6.Mostrar consultas  7.Terminar" << endl;
 		cout << "Digite la opcion deseada: ";
 		cin >> opc;
 		switch (opc)
 		{
 		case 1:
+			cout << "Ingrese el nombre del paciente: ";
+			cin.ignore();
+			getline(cin, dato_paciente.nombre);
 
-			dato_paciente.enfermedad = "Enfermedad Prueba";
-			dato_paciente.id_paciente = "Id prueba";
-			dato_paciente.nombre = "Nombre Prueba";
+			cout << "Ingrese el id del paciente: ";
+			getline(cin, dato_paciente.id_paciente);
 
-			objeto_pacientes.InsertarPaciente(dato_paciente);
-
-
-			dato_paciente.enfermedad = "Enfermedad Prueba";
-			dato_paciente.id_paciente = "Id prueba2";
-			dato_paciente.nombre = "Nombre Prueba";
-
-			objeto_pacientes.InsertarPaciente(dato_paciente);
-
-
-			dato_paciente.enfermedad = "Enfermedad Prueba";
-			dato_paciente.id_paciente = "Id prueba3";
-			dato_paciente.nombre = "Nombre Prueba";
-
+			cout << "Que enfermedad sufre el paciente:\n\t1.Cancer\n\t2.Diabetes\n\tDigite su opcion deseada: ";
+			while(submenu)
+			{
+				cin >> opc2;
+				switch (opc2)
+				{
+				case 1:
+					dato_paciente.enfermedad = "Cancer";
+					submenu = false;
+					break;
+				case 2:
+					dato_paciente.enfermedad = "Diabetes";
+					submenu = false;
+					break;
+				default:
+					cout << "Digite una opcion valida." << endl;
+					break;
+				}
+			}
 			objeto_pacientes.InsertarPaciente(dato_paciente);
 			break;
 		case 2:
-			dato_doctor.id_doctor= "Id prueba";
-			dato_doctor.nombre= "Nombre Prueba";
-			dato_doctor.especialidad = '1';
-
-			objeto_doctores.InsertarDoctorInicio(dato_doctor);
-
-			dato_doctor.id_doctor = "Id prueba2";
-			dato_doctor.nombre = "Nombre Prueba";
-			dato_doctor.especialidad = '1';
-
-			objeto_doctores.InsertarDoctorInicio(dato_doctor);
-
-			dato_doctor.id_doctor = "Id prueba3";
-			dato_doctor.nombre = "Nombre Prueba";
-			dato_doctor.especialidad = '1';
-
-			objeto_doctores.InsertarDoctorInicio(dato_doctor);
+			return_paciente = objeto_pacientes.ExtraerPaciente();
+			if (return_paciente.nombre == "-1")
+			{
+				cout << "No hay pacientes disponibles para consulta." << endl;
+				break;
+			}
+			if (return_paciente.enfermedad == "Cancer")
+			{
+				return_doctor = objeto_doctores.ExtraerBuscado('o');
+				if (return_doctor.especialidad == 'o')
+				{
+					cout << "Se encontro un doctor, empezando consulta" << endl;
+					dato_de_consulta.datos_doctor = return_doctor;
+					dato_de_consulta.datos_paciente = return_paciente;
+					objeto_consulta.insertar(dato_de_consulta);
+					break;
+				}
+				else
+				{
+					cout << "No hay doctores disponibles, insertando paciente a lista de espera." << endl;
+					lista_espera.InsertarPaciente(return_paciente);
+				}
+			}
+			if (return_paciente.enfermedad == "Diabetes")
+			{
+				return_doctor = objeto_doctores.ExtraerBuscado('e');
+				if (return_doctor.especialidad == 'e')
+				{
+					cout << "Se encontro un doctor, empezando consulta" << endl;
+					dato_de_consulta.datos_doctor = return_doctor;
+					dato_de_consulta.datos_paciente = return_paciente;
+					objeto_consulta.insertar(dato_de_consulta);
+					break;
+				}
+				else
+				{
+					cout << "No hay doctores disponibles, insertando paciente a lista de espera." << endl;
+					lista_espera.InsertarPaciente(return_paciente);
+				}
+			}
 			break;
 		case 3:
 			return_paciente = objeto_pacientes.ExtraerPaciente();
 			break;
 		case 4:
-			return_doctor = objeto_doctores.ExtraerFinal();
-			break;
-		case 5:
-			objeto_pacientes.MostrarPacientes();
-			cout << "\n\n" << endl;
 			objeto_doctores.MostrarDoctores();
 			break;
+		case 5:
+			lista_espera.mostrar();
+			break;
 		case 6:
-			dato_paciente.enfermedad = "Enfermedad Prueba";
-			dato_paciente.id_paciente = "Id prueba1";
-			dato_paciente.nombre = "Nombre Prueba1";
-
-			dato_doctor.id_doctor = "Id prueba11";
-			dato_doctor.nombre = "Nombre Prueba11";
-			dato_doctor.especialidad = '1';
-
-			dato_de_consulta.datos_doctor = dato_doctor;
-			dato_de_consulta.datos_paciente = dato_paciente;
-
-			objeto_consulta.insertar(dato_de_consulta);
-
-			dato_paciente.enfermedad = "Enfermedad Prueba";
-			dato_paciente.id_paciente = "Id prueba2";
-			dato_paciente.nombre = "Nombre Prueba2";
-
-			dato_doctor.id_doctor = "Id prueba22";
-			dato_doctor.nombre = "Nombre Prueba22";
-			dato_doctor.especialidad = '1';
-
-			dato_de_consulta.datos_doctor = dato_doctor;
-			dato_de_consulta.datos_paciente = dato_paciente;
-
-			objeto_consulta.insertar(dato_de_consulta);
-
-			dato_paciente.enfermedad = "Enfermedad Prueba";
-			dato_paciente.id_paciente = "Id prueba3";
-			dato_paciente.nombre = "Nombre Prueba3";
-
-			dato_doctor.id_doctor = "Id prueba33";
-			dato_doctor.nombre = "Nombre Prueba33";
-			dato_doctor.especialidad = '1';
-
-			dato_de_consulta.datos_doctor = dato_doctor;
-			dato_de_consulta.datos_paciente = dato_paciente;
-
-			objeto_consulta.insertar(dato_de_consulta);
+			objeto_consulta.mostrar();
 			break;
 
 		case 7:
-			return_consulta = objeto_consulta.extraer_medio("Id prueba11");
-			break;
-	
-		case 8:
-			cout << "\n\n" << endl;
-			objeto_consulta.mostrar();
-			break;
-			
-		case 9:
 			band = false;
 			break;
-
+	
 		default:
 			break;
 		}

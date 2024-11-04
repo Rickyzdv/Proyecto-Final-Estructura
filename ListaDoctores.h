@@ -23,10 +23,15 @@ public:
     ListaDoctores();
     void InsertarDoctorInicio(Doctor);
     Doctor ExtraerInicio();
-    Doctor ExtraerInter(string id);
+    Doctor ExtraerInter(char);
     Doctor ExtraerFinal();
+    Doctor ExtraerBuscado(char);
+
+    int buscar(char);
+
+
     void MostrarDoctores();
 
 private:
-    elemento_doctor* cabecera, *final, *nodo;
+    elemento_doctor* cabecera, *final, *nodo,*buscado;
 };

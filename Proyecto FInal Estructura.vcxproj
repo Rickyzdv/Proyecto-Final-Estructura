@@ -127,14 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Consulta.cpp" />
     <ClCompile Include="HistorialAtencion.cpp" />
     <ClCompile Include="ListaDoctores.cpp" />
+    <ClCompile Include="lista_pacientes.cpp" />
     <ClCompile Include="Paciente.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Consulta.h" />
     <ClInclude Include="HistorialAtencion.h" />
     <ClInclude Include="ListaDoctores.h" />
+    <ClInclude Include="lista_pacientes.h" />
     <ClInclude Include="Paciente.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
