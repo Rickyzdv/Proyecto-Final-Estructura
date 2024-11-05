@@ -141,7 +141,6 @@ int main()
 					dato_de_consulta.datos_doctor = return_doctor;
 					dato_de_consulta.datos_paciente = return_paciente;
 					objeto_consulta.insertar(dato_de_consulta);
-					break;
 				}
 				else
 				{

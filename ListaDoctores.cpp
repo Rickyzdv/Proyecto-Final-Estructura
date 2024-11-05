@@ -191,7 +191,7 @@ Doctor ListaDoctores::ExtraerBuscado(char especialidad)
     }
     if (buscado == final)
     {
-        ExtraerFinal();
+        aux=ExtraerFinal();
         return aux;
     }
     else 
