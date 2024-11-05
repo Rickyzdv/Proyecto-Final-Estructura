@@ -16,11 +16,13 @@ void HistorialAtencion::InsertarAtencion(Atencion nuevo)
 Atencion HistorialAtencion::ExtraerAtencion()
 {
     Atencion extraido;
-    if (tope == NULL) {
+    if (tope == NULL) 
+    {
         extraido.fecha = "";
         extraido.peso = 0.0;
         extraido.edad = 0;
         extraido.tratamiento = "";
+        extraido.nomDoc = "";
         return extraido;
     }
     nodo = tope;
@@ -32,17 +34,19 @@ Atencion HistorialAtencion::ExtraerAtencion()
 
 void HistorialAtencion::MostrarHistorial()
 {
-    cout << "\nHistorial de Atenciones:" << endl;
-    if (tope == NULL) {
+    cout << "\n\tHistorial de Atenciones:" << endl;
+    if (tope == NULL) 
+    {
         cout << "\n\tEl historial está vacío" << endl;
         return;
     }
     nodo = tope;
-    while (nodo != NULL) {
-        cout << "\tFecha: " << nodo->datos.fecha;
-        cout << "\tPeso: " << nodo->datos.peso;
-        cout << "\tEdad: " << nodo->datos.edad;
-        cout << "\tTratamiento: " << nodo->datos.tratamiento << endl;
+    while (nodo != NULL) 
+    {
+        cout << "\n\tFecha: " << nodo->datos.fecha;
+        cout << "\n\tPeso: " << nodo->datos.peso;
+        cout << "\n\tEdad: " << nodo->datos.edad;
+        cout << "\n\tTratamiento: " << nodo->datos.tratamiento << endl;
         nodo = nodo->anterior;
     }
 }

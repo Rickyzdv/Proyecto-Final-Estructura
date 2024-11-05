@@ -67,9 +67,9 @@ void ColaPacientes::MostrarPacientes()
     }
     nodo = principio;
     while (nodo != NULL) {
-        cout << "\tID: " << nodo->datos.id_paciente;
-        cout << "\tNombre: " << nodo->datos.nombre;
-        cout << "\tEnfermedad: " << nodo->datos.enfermedad;
+        cout << "\n\tID: " << nodo->datos.id_paciente;
+        cout << "\n\tNombre: " << nodo->datos.nombre;
+        cout << "\n\tEnfermedad: " << nodo->datos.enfermedad;
         if (nodo == principio) cout << "\t<- primero";
         if (nodo == final) cout << "\t<- último";
         cout << endl;

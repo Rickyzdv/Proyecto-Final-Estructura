@@ -91,7 +91,7 @@ int main()
 	{
 		submenu = true;
 		found = false;
-		cout << "\n1.Insertar Paciente  \n2.Empezar consulta  \n3.Terminar Consulta  \n4.Mostrar doctores  \n5.Mostrar lista de espera  \n6.Mostrar consultas  \n7.Terminar" << endl;
+		cout << "\n1.Insertar Paciente  \n2.Empezar consulta  \n3.Terminar Consulta  \n4.Mostrar doctores  \n5.Mostrar lista de espera  \n6.Mostrar consultas  \n7.Mostrar historial de consultas \n8. salir" << endl;
 		cout << "\nDigite la opcion deseada: ";
 		cin >> opc;
 		switch (opc)
@@ -104,7 +104,7 @@ int main()
 			cout << "\n\tIngrese el id del paciente: ";
 			getline(cin, dato_paciente.id_paciente);
 
-			cout << "\n\tQue enfermedad sufre el paciente:\n\t1.Cancer\n\t2.Diabetes\n\tDigite su opcion deseada: ";
+			cout << "\n\tA qué departamento se va a diferir el paciente?:\n\t1.Oncología\n\t2.Cardiología\n\tDigite su opción deseada: ";
 			while(submenu)
 			{
 				cin >> opc2;
@@ -180,6 +180,9 @@ int main()
 			break;
 
 		case 7:
+
+
+		case 8:
 			band = false;
 			break;
 	

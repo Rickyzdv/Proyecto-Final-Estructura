@@ -242,9 +242,9 @@ void ListaDoctores::MostrarDoctores()
     nodo = cabecera;
     do
     {
-        cout << "\tID: " << nodo->datos.id_doctor;
-        cout << "\tNombre: " << nodo->datos.nombre;
-        cout << "\tEspecialidad: " << nodo->datos.especialidad;
+        cout << "\n\tID: " << nodo->datos.id_doctor;
+        cout << "\n\tNombre: " << nodo->datos.nombre;
+        cout << "\n\tEspecialidad: " << nodo->datos.especialidad;
         if (nodo == cabecera)
         {
             cout << "\t<- primero";
