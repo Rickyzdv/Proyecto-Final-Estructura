@@ -91,20 +91,20 @@ int main()
 	{
 		submenu = true;
 		found = false;
-		cout << "1.Insertar Paciente  2.Empezar consulta  3.Terminar Consulta  4.Mostrar doctores  5.Mostrar lista de espera  6.Mostrar consultas  7.Terminar" << endl;
-		cout << "Digite la opcion deseada: ";
+		cout << "\n1.Insertar Paciente  \n2.Empezar consulta  \n3.Terminar Consulta  \n4.Mostrar doctores  \n5.Mostrar lista de espera  \n6.Mostrar consultas  \n7.Terminar" << endl;
+		cout << "\nDigite la opcion deseada: ";
 		cin >> opc;
 		switch (opc)
 		{
 		case 1:
-			cout << "Ingrese el nombre del paciente: ";
+			cout << "\n\tIngrese el nombre del paciente: ";
 			cin.ignore();
 			getline(cin, dato_paciente.nombre);
 
-			cout << "Ingrese el id del paciente: ";
+			cout << "\n\tIngrese el id del paciente: ";
 			getline(cin, dato_paciente.id_paciente);
 
-			cout << "Que enfermedad sufre el paciente:\n\t1.Cancer\n\t2.Diabetes\n\tDigite su opcion deseada: ";
+			cout << "\n\tQue enfermedad sufre el paciente:\n\t1.Cancer\n\t2.Diabetes\n\tDigite su opcion deseada: ";
 			while(submenu)
 			{
 				cin >> opc2;
