@@ -1,6 +1,9 @@
 #pragma once
 #include<string>
 #include<iostream>
+#pragma once
+#include<string>
+#include<iostream>
 #include"ListaDoctores.h"
 
 using namespace std;
@@ -28,11 +31,14 @@ public:
 	datos_consulta extraer_medio(string);
 	datos_consulta extraer_final();
 
+	datos_consulta extraer_random(int);
+
 	void mostrar();
-	
+
 
 private:
-	elemento_consulta* nodo, * cabecera, * final;
+	elemento_consulta* nodo, * cabecera, * final, * buscado;
 
 };
+
 
