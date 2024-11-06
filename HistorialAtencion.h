@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Paciente.h"
 #include <string>
 using namespace std;
 

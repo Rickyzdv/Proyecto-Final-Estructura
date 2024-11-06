@@ -10,6 +10,8 @@ using namespace std;
 
 int main()
 {
+
+	setlocale(LC_ALL, "");
 	// Tenemos que agregar toda la parte de logística, las estructuras ya están creadas.
 
 	// 1.- Hay que crear la terminal de manera visual, como se va a ver el menú y las opciones que va a tener
@@ -91,8 +93,8 @@ int main()
 	{
 		submenu = true;
 		found = false;
-		cout << "\n1.Insertar Paciente  \n2.Empezar consulta  \n3.Terminar Consulta  \n4.Mostrar doctores  \n5.Mostrar lista de espera  \n6.Mostrar consultas  \n7.Mostrar historial de consultas \n8. salir" << endl;
-		cout << "\nDigite la opcion deseada: ";
+		cout << "\n1.Insertar Paciente  \n2.Empezar consulta  \n3.Terminar consulta  \n4.Mostrar coctores  \n5.Mostrar lista de espera  \n6.Mostrar consultas  \n7.Mostrar historial de consultas \n8. Salir" << endl;
+		cout << "\nDigite la opción deseada: ";
 		cin >> opc;
 		switch (opc)
 		{
@@ -101,10 +103,10 @@ int main()
 			cin.ignore();
 			getline(cin, dato_paciente.nombre);
 
-			cout << "\n\tIngrese el id del paciente: ";
+			cout << "\n\tIngrese el ID del paciente: ";
 			getline(cin, dato_paciente.id_paciente);
 
-			cout << "\n\tA qué departamento se va a diferir el paciente?:\n\t1.Oncología\n\t2.Cardiología\n\tDigite su opción deseada: ";
+			cout << "\n\tA qué departamento se va a diferir el paciente?:\n\t\t1.Oncología\n\t\t2.Cardiología\n\tDigite su opción deseada: ";
 			while(submenu)
 			{
 				cin >> opc2;
@@ -119,7 +121,7 @@ int main()
 					submenu = false;
 					break;
 				default:
-					cout << "Digite una opcion valida." << endl;
+					cout << "\n\t\tDigite una opcion valida." << endl;
 					break;
 				}
 			}
@@ -129,7 +131,7 @@ int main()
 			return_paciente = objeto_pacientes.ExtraerPaciente();
 			if (return_paciente.nombre == "-1")
 			{
-				cout << "No hay pacientes disponibles para consulta." << endl;
+				cout << "\n\tNo hay pacientes disponibles para consulta." << endl;
 				break;
 			}
 			if (return_paciente.enfermedad == "Cancer")
@@ -137,14 +139,14 @@ int main()
 				return_doctor = objeto_doctores.ExtraerBuscado('o');
 				if (return_doctor.especialidad == 'o')
 				{
-					cout << "Se encontro un doctor, empezando consulta" << endl;
+					cout << "\n\tSe encontró un doctor, empezando consulta..." << endl;
 					dato_de_consulta.datos_doctor = return_doctor;
 					dato_de_consulta.datos_paciente = return_paciente;
 					objeto_consulta.insertar(dato_de_consulta);
 				}
 				else
 				{
-					cout << "No hay doctores disponibles, insertando paciente a lista de espera." << endl;
+					cout << "\n\tNo hay doctores disponibles, insertando paciente a lista de espera." << endl;
 					lista_espera.InsertarPaciente(return_paciente);
 				}
 			}
@@ -153,7 +155,7 @@ int main()
 				return_doctor = objeto_doctores.ExtraerBuscado('e');
 				if (return_doctor.especialidad == 'e')
 				{
-					cout << "Se encontro un doctor, empezando consulta" << endl;
+					cout << "\n\tSe encontro un doctor, empezando consulta" << endl;
 					dato_de_consulta.datos_doctor = return_doctor;
 					dato_de_consulta.datos_paciente = return_paciente;
 					objeto_consulta.insertar(dato_de_consulta);
@@ -161,7 +163,7 @@ int main()
 				}
 				else
 				{
-					cout << "No hay doctores disponibles, insertando paciente a lista de espera." << endl;
+					cout << "\n\tNo hay doctores disponibles, insertando paciente a lista de espera." << endl;
 					lista_espera.InsertarPaciente(return_paciente);
 				}
 			}
@@ -180,7 +182,8 @@ int main()
 			break;
 
 		case 7:
-
+			cout << "aún no esta";
+			break;
 
 		case 8:
 			band = false;
