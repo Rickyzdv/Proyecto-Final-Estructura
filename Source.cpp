@@ -51,12 +51,8 @@ int main()
 
 
 
-	bool band = true;
-	bool submenu = true;
-	bool found = false;
-	int cont = 0;
-	int opc;
-	int opc2;
+	bool band = true, submenu = true, found = false;
+	int cont = 0, opc, opc2;
 
 	Paciente dato_paciente;
 	Doctor dato_doctor;
