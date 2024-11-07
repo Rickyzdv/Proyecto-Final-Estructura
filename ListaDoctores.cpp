@@ -28,7 +28,7 @@ Doctor ListaDoctores::ExtraerInicio()
     aux.enfermedad = " ";
     aux.especialidad = '-1';
     aux.id_doctor = " ";
-    aux.nombre = " ";
+    aux.nombreDoc = " ";
 
 
     if (cabecera == NULL)
@@ -64,7 +64,7 @@ Doctor ListaDoctores::ExtraerInter(char especialidad)
     aux.enfermedad = " ";
     aux.especialidad = '-1';
     aux.id_doctor = " ";
-    aux.nombre = " ";
+    aux.nombreDoc = " ";
 
     if (cabecera == NULL)
     {
@@ -131,7 +131,7 @@ Doctor ListaDoctores::ExtraerFinal()
     aux.enfermedad = " ";
     aux.especialidad = '-1';
     aux.id_doctor = " ";
-    aux.nombre = " ";
+    aux.nombreDoc = " ";
 
     if (cabecera == NULL)
     {
@@ -175,7 +175,7 @@ Doctor ListaDoctores::ExtraerBuscado(char especialidad)
     aux.enfermedad = " ";
     aux.especialidad = '-1';
     aux.id_doctor = " ";
-    aux.nombre = " ";
+    aux.nombreDoc = " ";
 
     int code;
 
@@ -243,7 +243,7 @@ void ListaDoctores::MostrarDoctores()
     do
     {
         cout << "\n\tID: " << nodo->datos.id_doctor;
-        cout << "\n\tNombre: " << nodo->datos.nombre;
+        cout << "\n\tNombre: " << nodo->datos.nombreDoc;
         cout << "\n\tEspecialidad: " << nodo->datos.especialidad;
         if (nodo == cabecera)
         {

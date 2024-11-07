@@ -7,7 +7,7 @@ using namespace std;
 struct Doctor : public Paciente
 {
     string id_doctor;
-    string nombre;
+    string nombreDoc;
     char especialidad; // La letra inicial de cada especialidad de doctor que pongamos
 };
 

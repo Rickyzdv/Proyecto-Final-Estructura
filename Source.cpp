@@ -28,54 +28,56 @@ int main()
 	Paciente dato_paciente, return_paciente;
 	Doctor dato_doctor, return_doctor;
 	datos_consulta dato_de_consulta, return_consulta;
-
+	Atencion dato_atencion;
 
 	//Instancias de las clases creadas, para usar sus métodos y así
 	Consulta objeto_consulta;
 	ListaDoctores objeto_doctores;
 	ColaPacientes objeto_pacientes;
 	lista_pacientes lista_espera;
+	HistorialAtencion historial_citas;
 
 	//Creación de 5 Doctores para el uso del programa, con especialidades distintas.
 	dato_doctor.id_doctor = "1";
-	dato_doctor.nombre = "Santiago Torres";
+	dato_doctor.nombreDoc = "Santiago Torres";
 	dato_doctor.especialidad = 'C';// Cardiología  Enfermedades que pueden tratar: (Hipertensión, Arritmias, Pericarditis, Enfermedad Coronaria)
 
 	objeto_doctores.InsertarDoctorInicio(dato_doctor);
 
 	dato_doctor.id_doctor = "2";
-	dato_doctor.nombre = "Antonio Mendoza";
+	dato_doctor.nombreDoc = "Antonio Mendoza";
 	dato_doctor.especialidad = 'E';// Endocinología Enfermedades que pueden tratar: (Diabetes, Obesidad, Hipotiroidismo, Hipertiroidismo)
 
 	objeto_doctores.InsertarDoctorInicio(dato_doctor);
 
 	dato_doctor.id_doctor = "3";
-	dato_doctor.nombre = "Sofía Perez";
+	dato_doctor.nombreDoc = "Sofía Perez";
 	dato_doctor.especialidad = 'N'; // Neumología Enfermedades que pueden tratar: (Asma, Bronquitis crónica, Neumonía, Apena de sueño)
 
 	objeto_doctores.InsertarDoctorInicio(dato_doctor);
 
 	dato_doctor.id_doctor = "4";
-	dato_doctor.nombre = "Fernando Zuñiga";
+	dato_doctor.nombreDoc = "Fernando Zuñiga";
 	dato_doctor.especialidad = 'A'; // Reumatología Enfermedades que pueden tratar: (Artritis, Lupus, Osteoporósis, Gota,)
 
 	objeto_doctores.InsertarDoctorInicio(dato_doctor);
 	dato_doctor.id_doctor = "5";
-	dato_doctor.nombre = "Mariana García";
+	dato_doctor.nombreDoc = "Mariana García";
 	dato_doctor.especialidad = 'G'; //Gastroenterología Enfermedades que pueden tratar: (Gastritis, SII, reflujo gastroesofágico, Úlceras pépticas)
 
 	objeto_doctores.InsertarDoctorInicio(dato_doctor);
 
 	while (band)
 	{
-		cout << "\n1. Creaión del paciente";
+		cout << "\n1. Creación del paciente";
 		cout << "\n2. Pasar paciente a consulta";
 		cout << "\n3. Finalizar consulta aleatoria";
 		cout << "\n4. Mostrar Consultas en Proceso";
 		cout << "\n5. Mostrar Lista de Espera";
 		cout << "\n6. Mostrar Historial de Consultas";
 		cout << "\n7. Ver Doctores Disponibles";
-		cout << "\n8. Salir\n";
+		cout << "\n8. Mostrar cola de pacientes";
+		cout << "\n9. Salir\n";
 		cout << "\nDigite la opción deseada: ";
 		cin >> opc;
 		switch (opc)
@@ -218,33 +220,44 @@ int main()
 
 			cout << "\nDoctor asignado:";
 			cout << "\n\tID: " << return_doctor.id_doctor;
-			cout << "\n\tNombre: " << return_doctor.nombre;
+			cout << "\n\tNombre: " << return_doctor.nombreDoc;
 			cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
 
 			//Los pasamos a consulta
 			dato_de_consulta.datos_doctor = return_doctor;
 			dato_de_consulta.datos_paciente = return_paciente;
 			objeto_consulta.insertar(dato_de_consulta);
+
+			//Datos registrados de la consulta para pasar a la pila
+			dato_atencion.nomPac = return_paciente.nombre;
+			dato_atencion.enfermedadPac = return_paciente.enfermedad;
+			dato_atencion.nomDoc = return_doctor.nombreDoc;
+			dato_atencion.especialidadDoc = return_doctor.especialidad;
+			historial_citas.InsertarAtencion(dato_atencion);
 			break;
 		case 3:
 			numerorandom = 1 + rand() % (10 - 1);
 			dato_de_consulta = objeto_consulta.extraer_random(numerorandom);
+			cout << "\nSe terminó la consulta del paciente: " << dato_de_consulta.datos_paciente.nombre << "\nCon el doctor: " << dato_de_consulta.datos_doctor.nombreDoc << endl;
+			return_doctor = dato_de_consulta.datos_doctor;
+			objeto_doctores.InsertarDoctorInicio(return_doctor);
 			break;
 		case 4:
-			objeto_doctores.MostrarDoctores();
+			objeto_consulta.mostrar();
 			break;
 		case 5:
 			lista_espera.mostrar();
 			break;
 		case 6:
-			objeto_consulta.mostrar();
+			historial_citas.MostrarHistorial();
 			break;
-
 		case 7:
-			cout << "aún no esta";
+			objeto_doctores.MostrarDoctores();
 			break;
-
 		case 8:
+			objeto_pacientes.MostrarPacientes();
+			break;
+		case 9:
 			band = false;
 			break;
 	

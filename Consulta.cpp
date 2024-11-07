@@ -29,7 +29,7 @@ void Consulta::insertar(datos_consulta data)
 datos_consulta Consulta::extraer_inicio()
 {
 	datos_consulta aux;
-	aux.datos_doctor.id_doctor = aux.datos_doctor.nombre = aux.datos_doctor.especialidad = '-1';
+	aux.datos_doctor.id_doctor = aux.datos_doctor.nombreDoc = aux.datos_doctor.especialidad = '-1';
 	aux.datos_paciente.enfermedad = aux.datos_paciente.id_paciente = aux.datos_paciente.nombre = " ";
 
 	if (cabecera == NULL)
@@ -62,7 +62,7 @@ datos_consulta Consulta::extraer_inicio()
 datos_consulta Consulta::extraer_medio(string data)
 {
 	datos_consulta aux;
-	aux.datos_doctor.id_doctor = aux.datos_doctor.nombre = aux.datos_doctor.especialidad = ' ';
+	aux.datos_doctor.id_doctor = aux.datos_doctor.nombreDoc = aux.datos_doctor.especialidad = ' ';
 	aux.datos_paciente.enfermedad = aux.datos_paciente.id_paciente = aux.datos_paciente.nombre = " ";
 
 	bool found = false;
@@ -114,7 +114,7 @@ datos_consulta Consulta::extraer_medio(string data)
 datos_consulta Consulta::extraer_final()
 {
 	datos_consulta aux;
-	aux.datos_doctor.id_doctor = aux.datos_doctor.nombre = aux.datos_doctor.especialidad = '-1';
+	aux.datos_doctor.id_doctor = aux.datos_doctor.nombreDoc = aux.datos_doctor.especialidad = '-1';
 	aux.datos_paciente.enfermedad = aux.datos_paciente.id_paciente = aux.datos_paciente.nombre = " ";
 
 	if (cabecera == NULL)
@@ -157,7 +157,7 @@ datos_consulta Consulta::extraer_final()
 datos_consulta Consulta::extraer_random(int num)
 {
 	datos_consulta aux;
-	aux.datos_doctor.id_doctor = aux.datos_doctor.nombre = aux.datos_doctor.especialidad = '-1';
+	aux.datos_doctor.id_doctor = aux.datos_doctor.nombreDoc = aux.datos_doctor.especialidad = '-1';
 	aux.datos_paciente.enfermedad = aux.datos_paciente.id_paciente = aux.datos_paciente.nombre = " ";
 
 	if (cabecera == NULL)
@@ -199,7 +199,7 @@ void Consulta::mostrar()
 	do
 	{
 		cout << "\n\tId doctor: " << nodo->datos.datos_doctor.id_doctor;
-		cout << "\n\tNombre doctor: " << nodo->datos.datos_doctor.nombre;
+		cout << "\n\tNombre doctor: " << nodo->datos.datos_doctor.nombreDoc;
 		cout << "\n\tId paciente: " << nodo->datos.datos_paciente.id_paciente;
 		cout << "\n\tNombre paciente: " << nodo->datos.datos_paciente.nombre;
 
