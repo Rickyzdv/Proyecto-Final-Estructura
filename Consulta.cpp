@@ -170,7 +170,6 @@ datos_consulta Consulta::extraer_random(int num)
 	for (int i = 0; i < num; i++)
 	{
 		buscado = nodo;
-		cout << buscado->datos.datos_paciente.id_paciente << endl;
 		nodo = nodo->siguiente;
 	}
 

@@ -5,6 +5,8 @@
 #include"Paciente.h"
 #include"Consulta.h"
 #include"lista_pacientes.h"
+#include<cstdlib>
+#include<ctime>
 
 using namespace std;
 
@@ -12,6 +14,7 @@ int main()
 {
 
 	setlocale(LC_ALL, "");
+	srand(time(NULL));
 	// Tenemos que agregar toda la parte de logística, las estructuras ya están creadas.
 
 	// 1.- Hay que crear la terminal de manera visual, como se va a ver el menú y las opciones que va a tener
@@ -53,6 +56,7 @@ int main()
 
 	bool band = true, submenu = true, found = false;
 	int cont = 0, opc, opc2;
+	int numerorandom;
 
 	Paciente dato_paciente;
 	Doctor dato_doctor;
@@ -165,7 +169,8 @@ int main()
 			}
 			break;
 		case 3:
-			return_paciente = objeto_pacientes.ExtraerPaciente();
+			numerorandom = 1 + rand() % (10 - 1);
+			dato_de_consulta = objeto_consulta.extraer_random(numerorandom);
 			break;
 		case 4:
 			objeto_doctores.MostrarDoctores();
