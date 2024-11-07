@@ -13,24 +13,6 @@ void HistorialAtencion::InsertarAtencion(Atencion nuevo)
     tope = nodo;
 }
 
-Atencion HistorialAtencion::ExtraerAtencion()
-{
-    Atencion extraido;
-    if (tope == NULL) 
-    {
-        extraido.nomPac = "";
-        extraido.enfermedadPac = "";
-        extraido.tratamiento = "";
-        extraido.nomDoc = "";
-        return extraido;
-    }
-    nodo = tope;
-    extraido = nodo->datos;
-    tope = nodo->anterior;
-    delete nodo;
-    return extraido;
-}
-
 void HistorialAtencion::MostrarHistorial()
 {
     cout << "\n\tHistorial de Atenciones:" << endl;
@@ -44,8 +26,7 @@ void HistorialAtencion::MostrarHistorial()
     {
         cout << "\n\tNombre del Paciente: " << nodo->datos.nomPac;
         cout << "\n\tEnfermedad que presentó: " << nodo->datos.enfermedadPac;
-        cout << "\n\tTratamiento recetado: " << nodo->datos.tratamiento;
-        cout << "\n\tDoctor que lo atendió: " << nodo->datos.tratamiento; 
+        cout << "\n\tDoctor que lo atendió: " << nodo->datos.nomDoc; 
         cout << "\n\tEspecialidad del doctor: " << nodo->datos.especialidadDoc << endl;
         nodo = nodo->anterior;
     }

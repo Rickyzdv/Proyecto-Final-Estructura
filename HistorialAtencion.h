@@ -23,7 +23,6 @@ class HistorialAtencion {
 public:
     HistorialAtencion();
     void InsertarAtencion(Atencion);
-    Atencion ExtraerAtencion();
     void MostrarHistorial();
 
 private:

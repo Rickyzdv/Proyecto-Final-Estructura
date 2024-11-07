@@ -131,6 +131,7 @@ void lista_pacientes::mostrar()
     {
         cout << "\n\tID: " << nodo->datos.id_paciente;
         cout << "\n\tNombre: " << nodo->datos.nombre;
+        cout << "\n\tEnfermedad: " << nodo->datos.enfermedad;
         if (nodo == cabecera)
         {
             cout << "\t<- primero";
