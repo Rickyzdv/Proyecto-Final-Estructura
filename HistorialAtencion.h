@@ -5,9 +5,9 @@
 using namespace std;
 
 struct Atencion {
-    string fecha;
-    float peso;
-    int edad;
+
+    string nomPac;
+    string enfermedadPac;
     string tratamiento;
     string nomDoc;
     char especialidadDoc;
