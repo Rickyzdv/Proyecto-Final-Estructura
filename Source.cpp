@@ -133,7 +133,8 @@ int main()
 			break;
 		case 2:
 			return_paciente = objeto_pacientes.ExtraerPaciente();
-			if (return_paciente.nombre == "-1") {	
+			if (return_paciente.nombre == "-1") 
+			{	
 				cout << "\n\tNo hay pacientes disponibles para consulta." << endl;
 				break;
 			}
@@ -148,10 +149,12 @@ int main()
 			{
 
 				return_doctor = objeto_doctores.ExtraerBuscado('C');  // Cardiología
-				if (return_doctor.especialidad == 'C') {
+				if (return_doctor.especialidad == 'C') 
+				{
 					cout << "\n\tSe encontró un doctor de Cardiología, empezando consulta..." << endl;
 				}
-				else {
+				else 
+				{
 					cout << "\n\tNo hay doctores disponibles de Cardiología, insertando paciente a lista de espera." << endl;
 					lista_espera.InsertarPaciente(return_paciente);
 				}
@@ -162,12 +165,14 @@ int main()
 			{
 
 				return_doctor = objeto_doctores.ExtraerBuscado('E');  // Endocrinología
-				if (return_doctor.especialidad == 'E') {
+				if (return_doctor.especialidad == 'E') 
+				{
 					cout << "\n\tSe encontró un doctor de Endocrinología, empezando consulta..." << endl;
 				}
-				else {
+				else 
+				{
 					cout << "\n\tNo hay doctores disponibles de Endocrinología, insertando paciente a lista de espera." << endl;
-					lista_espera.InsertarPaciente(return_paciente);
+					lista_espera.InsertarPaciente(dato_paciente);
 				}
 
 			}
@@ -204,15 +209,18 @@ int main()
 			{
 
 				return_doctor = objeto_doctores.ExtraerBuscado('G');  // Gastroenterología
-				if (return_doctor.especialidad == 'G') {
+				if (return_doctor.especialidad == 'G') 
+				{
 					cout << "\n\tSe encontró un doctor de Gastroenterología, empezando consulta..." << endl;
 				}
-				else {
+				else 
+				{
 					cout << "\n\tNo hay doctores disponibles de Gastroenterología, insertando paciente a lista de espera." << endl;
 					lista_espera.InsertarPaciente(return_paciente);
 				}
 			}
-			else {
+			else 
+			{
 				cout << "\n\tLa enfermedad del paciente no corresponde a ningún departamento conocido." << endl;
 				lista_espera.InsertarPaciente(return_paciente);
 				break;

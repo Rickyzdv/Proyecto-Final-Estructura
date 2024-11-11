@@ -45,18 +45,14 @@ datos_consulta Consulta::extraer_inicio()
 		cabecera = nodo = buscado = NULL;
 		return aux;
 	}
-
-	final->siguiente = nodo->siguiente;
-	cabecera = nodo->siguiente;
-
-	if (nodo == buscado)
+	else
 	{
-		buscado = cabecera;
+		cabecera = nodo->siguiente;
 	}
-
+	
 	delete nodo;
-
 	return aux;
+
 }
 
 datos_consulta Consulta::extraer_medio(string data)
@@ -75,38 +71,26 @@ datos_consulta Consulta::extraer_medio(string data)
 	elemento_consulta* nodoAnterior = NULL;
 	nodo = cabecera;
 
-	while (nodo != NULL)
-	{
+	do {
 		if (nodo->datos.datos_doctor.id_doctor == data)
 		{
-			found = true;
-			break;
+			if (nodo == cabecera)
+				return extraer_inicio();
+			if (nodo == final)
+				return extraer_final();
+
+			aux = nodo->datos;
+			nodoAnterior->siguiente = nodo->siguiente;
+
+			if (nodo == final)
+				final = nodoAnterior;
+
+			delete nodo;
+			return aux;
 		}
 		nodoAnterior = nodo;
 		nodo = nodo->siguiente;
-	}
-
-	if (found == false)
-	{
-		return aux;
-	}
-
-	if (nodo == cabecera)
-	{
-		aux = extraer_inicio();
-		return aux;
-	}
-
-	if (nodo == final)
-	{
-		aux = extraer_final();
-		return aux;
-	}
-
-	aux = nodo->datos;
-	nodoAnterior->siguiente = nodo->siguiente;
-
-	delete nodo;
+	} while (nodo != cabecera);
 
 	return aux;
 }
@@ -124,33 +108,35 @@ datos_consulta Consulta::extraer_final()
 
 	if (cabecera == final)
 	{
-		aux = extraer_inicio();
+		aux = cabecera->datos;
+		delete cabecera;
+		cabecera = final = NULL;
 		return aux;
 	}
 
-
+	if (cabecera->siguiente == final)
+	{
+		aux = final->datos;         
+		delete final;                
+		final = cabecera;            
+		cabecera->siguiente = cabecera; 
+		return aux;
+	}
 	nodo = cabecera;
-	elemento_consulta* NodoAnterior;
-	NodoAnterior = NULL;
+	elemento_consulta* NodoAnterior = NULL;
 
-	do
+	while (nodo->siguiente != final) 
 	{
 		NodoAnterior = nodo;
 		nodo = nodo->siguiente;
-
-	} while (nodo != final);
-
-	aux = nodo->datos;
-	NodoAnterior->siguiente = cabecera;
-	final = NodoAnterior;
-
-	if (nodo == buscado)
-	{
-		buscado = NULL;
 	}
 
-	delete nodo;
+	
+	aux = final->datos;
+	NodoAnterior->siguiente = cabecera;  
+	final = NodoAnterior;           
 
+	delete nodo;  
 	return aux;
 }
 
@@ -166,6 +152,16 @@ datos_consulta Consulta::extraer_random(int num)
 	}
 
 	nodo = cabecera;
+	int contador = 0;
+
+	do 
+	{
+		nodo = nodo->siguiente;
+		contador++;
+	} while (nodo != cabecera);
+
+	nodo = cabecera;
+	num = num % contador;
 
 	for (int i = 0; i < num; i++)
 	{
