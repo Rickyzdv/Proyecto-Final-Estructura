@@ -45,9 +45,13 @@ datos_consulta Consulta::extraer_inicio()
 		cabecera = nodo = buscado = NULL;
 		return aux;
 	}
-	else
+	
+	final->siguiente = nodo->siguiente;
+	cabecera = nodo->siguiente;
+
+	if (nodo == buscado)
 	{
-		cabecera = nodo->siguiente;
+		buscado = cabecera;
 	}
 	
 	delete nodo;
@@ -59,38 +63,64 @@ datos_consulta Consulta::extraer_medio(string data)
 {
 	datos_consulta aux;
 	aux.datos_doctor.id_doctor = aux.datos_doctor.nombreDoc = aux.datos_doctor.especialidad = ' ';
-	aux.datos_paciente.enfermedad = aux.datos_paciente.id_paciente = aux.datos_paciente.nombre = " ";
-
-	bool found = false;
+	aux.datos_paciente.enfermedad = aux.datos_paciente.id_paciente = aux.datos_paciente.nombre = "-1";
 
 	if (cabecera == NULL)
 	{
 		return aux;
 	}
 
-	elemento_consulta* nodoAnterior = NULL;
-	nodo = cabecera;
+	bool found = false;
 
-	do {
+	if (cabecera == final)
+	{
+		aux = nodo->datos;
+		final = buscado = cabecera = NULL;
+		return aux;
+	}
+
+	nodo = cabecera;
+	elemento_consulta* NodoAnterior;
+	NodoAnterior = NULL;
+
+	do
+	{
 		if (nodo->datos.datos_doctor.id_doctor == data)
 		{
-			if (nodo == cabecera)
-				return extraer_inicio();
-			if (nodo == final)
-				return extraer_final();
-
-			aux = nodo->datos;
-			nodoAnterior->siguiente = nodo->siguiente;
-
-			if (nodo == final)
-				final = nodoAnterior;
-
-			delete nodo;
-			return aux;
+			found = true;
+			break;
 		}
-		nodoAnterior = nodo;
+		NodoAnterior = nodo;
 		nodo = nodo->siguiente;
+
 	} while (nodo != cabecera);
+
+	if (found == false)
+	{
+		return aux;
+	}
+	if (nodo == final)
+	{
+		aux = extraer_final();
+		return aux;
+	}
+
+	if (nodo == cabecera)
+	{
+		aux = extraer_inicio();
+		return aux;
+	}
+
+
+	aux = nodo->datos;
+	NodoAnterior->siguiente = nodo->siguiente;
+
+	if (nodo == buscado)
+	{
+		buscado = cabecera;
+	}
+
+	delete nodo;
 
 	return aux;
 }
@@ -106,35 +136,33 @@ datos_consulta Consulta::extraer_final()
 		return aux;
 	}
 
+	nodo = final;
+
 	if (cabecera == final)
 	{
-		aux = cabecera->datos;
-		delete cabecera;
-		cabecera = final = NULL;
+		aux = nodo->datos;
+		final = buscado = cabecera = NULL;
 		return aux;
 	}
 
-	if (cabecera->siguiente == final)
-	{
-		aux = final->datos;         
-		delete final;                
-		final = cabecera;            
-		cabecera->siguiente = cabecera; 
-		return aux;
-	}
-	nodo = cabecera;
 	elemento_consulta* NodoAnterior = NULL;
 
-	while (nodo->siguiente != final) 
+	do
 	{
 		NodoAnterior = nodo;
 		nodo = nodo->siguiente;
-	}
+
+	} while (nodo!=final);
 
 	
-	aux = final->datos;
+	aux = nodo->datos;
 	NodoAnterior->siguiente = cabecera;  
 	final = NodoAnterior;           
+
+	if (nodo == buscado)
+	{
+		buscado = cabecera;
+	}
 
 	delete nodo;  
 	return aux;
@@ -160,26 +188,19 @@ datos_consulta Consulta::extraer_random(int num)
 		contador++;
 	} while (nodo != cabecera);
 
-	nodo = cabecera;
-	num = num % contador;
 
-	for (int i = 0; i < num; i++)
+	nodo = cabecera;
+
+	for (int i = 0; i < contador; i++)
 	{
+
 		buscado = nodo;
+		cout << nodo->datos.datos_doctor.id_doctor << endl;
 		nodo = nodo->siguiente;
 	}
 
-	if (buscado == cabecera)
-	{
-		aux = extraer_inicio();
-		return aux;
-	}
-	if (buscado == final)
-	{
-		aux = extraer_final();
-		return aux;
-	}
 	aux = extraer_medio(buscado->datos.datos_doctor.id_doctor);
+
 	return aux;
 
 }

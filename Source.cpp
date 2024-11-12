@@ -21,14 +21,16 @@ int main()
 
 	//Variables normales que ayudan en las funciones
 	bool band = true, submenu = true, found = false;
+	bool encontrado = false;
 	int cont = 0, opc, opc2;
 	int numerorandom;
 
 	//Estructuras que usamos en las clases y que usamos para interactuar con los usuarios, llenar las variables de datos e insertarlas y moverlas por los distintos métodos
-	Paciente dato_paciente, return_paciente;
+	Paciente dato_paciente, return_paciente,paciente_espera;
 	Doctor dato_doctor, return_doctor;
 	datos_consulta dato_de_consulta, return_consulta;
 	Atencion dato_atencion;
+	
 
 	//Instancias de las clases creadas, para usar sus métodos y así
 	Consulta objeto_consulta;
@@ -132,6 +134,139 @@ int main()
 			objeto_pacientes.InsertarPaciente(dato_paciente);
 			break;
 		case 2:
+			paciente_espera = lista_espera.ExtraerInicio();
+			cout << paciente_espera.enfermedad << endl;
+			if (paciente_espera.enfermedad != "-1")
+			{
+				if (paciente_espera.enfermedad == "Hipertensión" || paciente_espera.enfermedad == "Arritmias" ||
+					paciente_espera.enfermedad == "Pericarditis" || paciente_espera.enfermedad == "Enfermedad Coronaria")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('C');  // Cardiología
+					if (return_doctor.especialidad == 'C')
+					{
+						cout << "\n\tSe encontró un doctor de Cardiología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = paciente_espera;
+						objeto_consulta.insertar(dato_de_consulta);
+
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+
+					}
+					else
+					{
+						cout << "\n\tNo hay doctores disponibles de Cardiología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(paciente_espera);
+					}
+
+				}
+				else if (paciente_espera.enfermedad == "Diabetes" || paciente_espera.enfermedad == "Obesidad" ||
+					paciente_espera.enfermedad == "Hipotiroidismo" || paciente_espera.enfermedad == "Hipertiroidismo")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('E');  // Endocrinología
+					if (return_doctor.especialidad == 'E')
+					{
+						cout << "\n\tSe encontró un doctor de Endocrinología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = paciente_espera;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else
+					{
+						cout << "\n\tNo hay doctores disponibles de Endocrinología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(paciente_espera);
+					}
+
+				}
+				else if (paciente_espera.enfermedad == "Asma" || paciente_espera.enfermedad == "Bronquitis crónica" ||
+					paciente_espera.enfermedad == "Neumonía" || paciente_espera.enfermedad == "Apnea del sueño")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('N');  // Neumología
+					if (return_doctor.especialidad == 'N') {
+						cout << "\n\tSe encontró un doctor de Neumología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = paciente_espera;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else {
+						cout << "\n\tNo hay doctores disponibles de Neumología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(paciente_espera);
+					}
+
+				}
+				else if (paciente_espera.enfermedad == "Artritis" || paciente_espera.enfermedad == "Lupus" ||
+					paciente_espera.enfermedad == "Osteoporosis" || paciente_espera.enfermedad == "Gota")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('A');  // Reumatología
+					if (return_doctor.especialidad == 'A') {
+						cout << "\n\tSe encontró un doctor de Reumatología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = paciente_espera;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else {
+						cout << "\n\tNo hay doctores disponibles de Reumatología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(paciente_espera);
+					}
+
+				}
+				else if (paciente_espera.enfermedad == "Gastritis" || paciente_espera.enfermedad == "Síndrome de Intestino Irritable" ||
+					paciente_espera.enfermedad == "Reflujo Gastroesofágico" || paciente_espera.enfermedad == "Úlceras Pépticas")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('G');  // Gastroenterología
+					if (return_doctor.especialidad == 'G')
+					{
+						cout << "\n\tSe encontró un doctor de Gastroenterología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = paciente_espera;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else
+					{
+						cout << "\n\tNo hay doctores disponibles de Gastroenterología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(paciente_espera);
+					}
+				}
+				else
+				{
+					cout << "\n\tNo hay doctor disponible todavía, regresando a lista de espera." << endl;
+					lista_espera.InsertarPaciente(paciente_espera);
+				}
+			}
+			else
+			{
+				cout << "No hay pacientes en lista de espera, pasando a la cola normal." << endl;
+				
+			}
+
 			return_paciente = objeto_pacientes.ExtraerPaciente();
 			if (return_paciente.nombre == "-1") 
 			{	
@@ -139,116 +274,151 @@ int main()
 				break;
 			}
 			
-			cout << "\nDatos del paciente:";
-			cout << "\n\tID: " << return_paciente.id_paciente;
-			cout << "\n\tNombre: " << return_paciente.nombre;
-			cout << "\n\tEnfermedad: " << return_paciente.enfermedad << endl;
+				cout << "\nDatos del paciente:";
+				cout << "\n\tID: " << return_paciente.id_paciente;
+				cout << "\n\tNombre: " << return_paciente.nombre;
+				cout << "\n\tEnfermedad: " << return_paciente.enfermedad << endl;
 
-			if (return_paciente.enfermedad == "Hipertensión" || return_paciente.enfermedad == "Arritmias" ||
-				return_paciente.enfermedad == "Pericarditis" || return_paciente.enfermedad == "Enfermedad Coronaria") 
-			{
-
-				return_doctor = objeto_doctores.ExtraerBuscado('C');  // Cardiología
-				if (return_doctor.especialidad == 'C') 
+				if (return_paciente.enfermedad == "Hipertensión" || return_paciente.enfermedad == "Arritmias" ||
+					return_paciente.enfermedad == "Pericarditis" || return_paciente.enfermedad == "Enfermedad Coronaria")
 				{
-					cout << "\n\tSe encontró un doctor de Cardiología, empezando consulta..." << endl;
+
+					return_doctor = objeto_doctores.ExtraerBuscado('C');  // Cardiología
+					if (return_doctor.especialidad == 'C')
+					{
+						cout << "\n\tSe encontró un doctor de Cardiología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = return_paciente;
+						objeto_consulta.insertar(dato_de_consulta);
+
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+
+					}
+					else
+					{
+						cout << "\n\tNo hay doctores disponibles de Cardiología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(return_paciente);
+					}
+
 				}
-				else 
+				else if (return_paciente.enfermedad == "Diabetes" || return_paciente.enfermedad == "Obesidad" ||
+					return_paciente.enfermedad == "Hipotiroidismo" || return_paciente.enfermedad == "Hipertiroidismo")
 				{
-					cout << "\n\tNo hay doctores disponibles de Cardiología, insertando paciente a lista de espera." << endl;
+
+					return_doctor = objeto_doctores.ExtraerBuscado('E');  // Endocrinología
+					if (return_doctor.especialidad == 'E')
+					{
+						cout << "\n\tSe encontró un doctor de Endocrinología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = return_paciente;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else
+					{
+						cout << "\n\tNo hay doctores disponibles de Endocrinología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(dato_paciente);
+					}
+
+				}
+				else if (return_paciente.enfermedad == "Asma" || return_paciente.enfermedad == "Bronquitis crónica" ||
+					return_paciente.enfermedad == "Neumonía" || return_paciente.enfermedad == "Apnea del sueño")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('N');  // Neumología
+					if (return_doctor.especialidad == 'N') {
+						cout << "\n\tSe encontró un doctor de Neumología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = return_paciente;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else {
+						cout << "\n\tNo hay doctores disponibles de Neumología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(return_paciente);
+					}
+
+				}
+				else if (return_paciente.enfermedad == "Artritis" || return_paciente.enfermedad == "Lupus" ||
+					return_paciente.enfermedad == "Osteoporosis" || return_paciente.enfermedad == "Gota")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('A');  // Reumatología
+					if (return_doctor.especialidad == 'A') {
+						cout << "\n\tSe encontró un doctor de Reumatología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = return_paciente;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else {
+						cout << "\n\tNo hay doctores disponibles de Reumatología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(return_paciente);
+					}
+
+				}
+				else if (return_paciente.enfermedad == "Gastritis" || return_paciente.enfermedad == "Síndrome de Intestino Irritable" ||
+					return_paciente.enfermedad == "Reflujo Gastroesofágico" || return_paciente.enfermedad == "Úlceras Pépticas")
+				{
+
+					return_doctor = objeto_doctores.ExtraerBuscado('G');  // Gastroenterología
+					if (return_doctor.especialidad == 'G')
+					{
+						cout << "\n\tSe encontró un doctor de Gastroenterología, empezando consulta..." << endl;
+						cont++;
+						dato_de_consulta.datos_doctor = return_doctor;
+						dato_de_consulta.datos_paciente = return_paciente;
+						objeto_consulta.insertar(dato_de_consulta);
+						cout << "\nDoctor asignado:";
+						cout << "\n\tID: " << return_doctor.id_doctor;
+						cout << "\n\tNombre: " << return_doctor.nombreDoc;
+						cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
+					}
+					else
+					{
+						cout << "\n\tNo hay doctores disponibles de Gastroenterología, insertando paciente a lista de espera." << endl;
+						lista_espera.InsertarPaciente(return_paciente);
+					}
+				}
+				else
+				{
+					cout << "\n\tLa enfermedad del paciente no corresponde a ningún departamento conocido." << endl;
 					lista_espera.InsertarPaciente(return_paciente);
+					break;
 				}
 
-			}
-			else if (return_paciente.enfermedad == "Diabetes" || return_paciente.enfermedad == "Obesidad" ||
-				return_paciente.enfermedad == "Hipotiroidismo" || return_paciente.enfermedad == "Hipertiroidismo") 
-			{
 
-				return_doctor = objeto_doctores.ExtraerBuscado('E');  // Endocrinología
-				if (return_doctor.especialidad == 'E') 
-				{
-					cout << "\n\tSe encontró un doctor de Endocrinología, empezando consulta..." << endl;
-				}
-				else 
-				{
-					cout << "\n\tNo hay doctores disponibles de Endocrinología, insertando paciente a lista de espera." << endl;
-					lista_espera.InsertarPaciente(dato_paciente);
-				}
 
-			}
-			else if (return_paciente.enfermedad == "Asma" || return_paciente.enfermedad == "Bronquitis crónica" ||
-				return_paciente.enfermedad == "Neumonía" || return_paciente.enfermedad == "Apnea del sueño") 
-			{
+			break;
+		case 3:
+			numerorandom =  1 + rand() % ((cont - 1)+1);
+			dato_de_consulta = objeto_consulta.extraer_random(numerorandom);
+			cout << "\nSe terminó la consulta del paciente: " << dato_de_consulta.datos_paciente.nombre << "\nCon el doctor: " << dato_de_consulta.datos_doctor.nombreDoc << endl;
+			return_doctor = dato_de_consulta.datos_doctor;
+			objeto_doctores.InsertarDoctorInicio(return_doctor);
 
-				return_doctor = objeto_doctores.ExtraerBuscado('N');  // Neumología
-				if (return_doctor.especialidad == 'N') {
-					cout << "\n\tSe encontró un doctor de Neumología, empezando consulta..." << endl;
-				}
-				else {
-					cout << "\n\tNo hay doctores disponibles de Neumología, insertando paciente a lista de espera." << endl;
-					lista_espera.InsertarPaciente(return_paciente);
-				}
-
-			}
-			else if (return_paciente.enfermedad == "Artritis" || return_paciente.enfermedad == "Lupus" ||
-				return_paciente.enfermedad == "Osteoporosis" || return_paciente.enfermedad == "Gota") 
-			{
-
-				return_doctor = objeto_doctores.ExtraerBuscado('A');  // Reumatología
-				if (return_doctor.especialidad == 'A') {
-					cout << "\n\tSe encontró un doctor de Reumatología, empezando consulta..." << endl;
-				}
-				else {
-					cout << "\n\tNo hay doctores disponibles de Reumatología, insertando paciente a lista de espera." << endl;
-					lista_espera.InsertarPaciente(return_paciente);
-				}
-
-			}
-			else if (return_paciente.enfermedad == "Gastritis" || return_paciente.enfermedad == "Síndrome de Intestino Irritable" ||
-				return_paciente.enfermedad == "Reflujo Gastroesofágico" || return_paciente.enfermedad == "Úlceras Pépticas") 
-			{
-
-				return_doctor = objeto_doctores.ExtraerBuscado('G');  // Gastroenterología
-				if (return_doctor.especialidad == 'G') 
-				{
-					cout << "\n\tSe encontró un doctor de Gastroenterología, empezando consulta..." << endl;
-				}
-				else 
-				{
-					cout << "\n\tNo hay doctores disponibles de Gastroenterología, insertando paciente a lista de espera." << endl;
-					lista_espera.InsertarPaciente(return_paciente);
-				}
-			}
-			else 
-			{
-				cout << "\n\tLa enfermedad del paciente no corresponde a ningún departamento conocido." << endl;
-				lista_espera.InsertarPaciente(return_paciente);
-				break;
-			}
-
-			cout << "\nDoctor asignado:";
-			cout << "\n\tID: " << return_doctor.id_doctor;
-			cout << "\n\tNombre: " << return_doctor.nombreDoc;
-			cout << "\n\tEspecialidad: " << return_doctor.especialidad << endl;
-
-			//Los pasamos a consulta
-			dato_de_consulta.datos_doctor = return_doctor;
-			dato_de_consulta.datos_paciente = return_paciente;
-			objeto_consulta.insertar(dato_de_consulta);
-
-			//Datos registrados de la consulta para pasar a la pila
 			dato_atencion.nomPac = return_paciente.nombre;
 			dato_atencion.enfermedadPac = return_paciente.enfermedad;
 			dato_atencion.nomDoc = return_doctor.nombreDoc;
 			dato_atencion.especialidadDoc = return_doctor.especialidad;
 			historial_citas.InsertarAtencion(dato_atencion);
-			break;
-		case 3:
-			numerorandom = 1 + rand() % (10 - 1);
-			dato_de_consulta = objeto_consulta.extraer_random(numerorandom);
-			cout << "\nSe terminó la consulta del paciente: " << dato_de_consulta.datos_paciente.nombre << "\nCon el doctor: " << dato_de_consulta.datos_doctor.nombreDoc << endl;
-			return_doctor = dato_de_consulta.datos_doctor;
-			objeto_doctores.InsertarDoctorInicio(return_doctor);
+
 			break;
 		case 4:
 			objeto_consulta.mostrar();

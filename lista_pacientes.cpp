@@ -24,7 +24,7 @@ void lista_pacientes::InsertarPaciente(Paciente nuevo)
 Paciente lista_pacientes::ExtraerInicio()
 {
     Paciente aux;
-    aux.enfermedad = " ";
+    aux.enfermedad = "-1";
     aux.id_paciente = " ";
     aux.nombre = " ";
 
