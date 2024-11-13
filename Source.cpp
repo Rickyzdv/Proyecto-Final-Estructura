@@ -134,6 +134,7 @@ int main()
 			objeto_pacientes.InsertarPaciente(dato_paciente);
 			break;
 		case 2:
+			
 			paciente_espera = lista_espera.ExtraerInicio();
 			cout << paciente_espera.enfermedad << endl;
 			if (paciente_espera.enfermedad != "-1")
@@ -407,16 +408,27 @@ int main()
 
 			break;
 		case 3:
+			if (cont == 0)
+			{
+				cout << "Agregue una consulta primero. " << endl;
+				break;
+			}
 			numerorandom =  1 + rand() % ((cont - 1)+1);
 			dato_de_consulta = objeto_consulta.extraer_random(numerorandom);
+			cout << dato_de_consulta.datos_paciente.enfermedad << endl;
+			if (dato_de_consulta.datos_paciente.enfermedad == "-1")
+			{
+				cout << "No hay nadie disponible para pasar a consulta. " << endl;
+				break;
+			}
 			cout << "\nSe terminó la consulta del paciente: " << dato_de_consulta.datos_paciente.nombre << "\nCon el doctor: " << dato_de_consulta.datos_doctor.nombreDoc << endl;
 			return_doctor = dato_de_consulta.datos_doctor;
 			objeto_doctores.InsertarDoctorInicio(return_doctor);
 
-			dato_atencion.nomPac = return_paciente.nombre;
-			dato_atencion.enfermedadPac = return_paciente.enfermedad;
-			dato_atencion.nomDoc = return_doctor.nombreDoc;
-			dato_atencion.especialidadDoc = return_doctor.especialidad;
+			dato_atencion.nomPac = dato_de_consulta.datos_paciente.nombre;
+			dato_atencion.enfermedadPac = dato_de_consulta.datos_paciente.enfermedad;
+			dato_atencion.nomDoc = dato_de_consulta.datos_doctor.nombreDoc;
+			dato_atencion.especialidadDoc = dato_de_consulta.datos_doctor.especialidad;
 			historial_citas.InsertarAtencion(dato_atencion);
 
 			break;

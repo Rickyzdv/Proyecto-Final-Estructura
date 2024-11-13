@@ -25,7 +25,7 @@ Paciente lista_pacientes::ExtraerInicio()
 {
     Paciente aux;
     aux.enfermedad = "-1";
-    aux.id_paciente = " ";
+    aux.id_paciente = "-1";
     aux.nombre = " ";
 
 
@@ -46,8 +46,8 @@ Paciente lista_pacientes::ExtraerInter(string enfermedad)
 {
     Paciente aux;
     aux.enfermedad = "-1";
-    aux.id_paciente = " ";
-    aux.nombre = " ";
+    aux.id_paciente = "-1";
+    aux.nombre = "-1";
 
     bool found = false;
 
@@ -92,8 +92,8 @@ Paciente lista_pacientes::ExtraerFinal()
 {
     Paciente aux;
     aux.enfermedad = "-1";
-    aux.id_paciente = " ";
-    aux.nombre = " ";
+    aux.id_paciente = "-1";
+    aux.nombre = "-1";
 
     if (cabecera == NULL)
     {

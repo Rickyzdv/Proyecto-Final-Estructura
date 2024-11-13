@@ -25,10 +25,10 @@ void ListaDoctores::InsertarDoctorInicio(Doctor nuevo)
 Doctor ListaDoctores::ExtraerInicio()
 {
     Doctor aux;
-    aux.enfermedad = " ";
+    aux.enfermedad = "-1";
     aux.especialidad = '-1';
-    aux.id_doctor = " ";
-    aux.nombreDoc = " ";
+    aux.id_doctor = "-1";
+    aux.nombreDoc = "-1";
 
 
     if (cabecera == NULL)
@@ -61,10 +61,10 @@ Doctor ListaDoctores::ExtraerInicio()
 Doctor ListaDoctores::ExtraerInter(char especialidad)
 {
     Doctor aux;
-    aux.enfermedad = " ";
+    aux.enfermedad = "-1";
     aux.especialidad = '-1';
-    aux.id_doctor = " ";
-    aux.nombreDoc = " ";
+    aux.id_doctor = "-1";
+    aux.nombreDoc = "-1";
 
     if (cabecera == NULL)
     {
@@ -128,10 +128,10 @@ Doctor ListaDoctores::ExtraerInter(char especialidad)
 Doctor ListaDoctores::ExtraerFinal()
 {
     Doctor aux;
-    aux.enfermedad = " ";
+    aux.enfermedad = "-1";
     aux.especialidad = '-1';
-    aux.id_doctor = " ";
-    aux.nombreDoc = " ";
+    aux.id_doctor = "-1";
+    aux.nombreDoc = "-1";
 
     if (cabecera == NULL)
     {
@@ -172,10 +172,10 @@ Doctor ListaDoctores::ExtraerFinal()
 Doctor ListaDoctores::ExtraerBuscado(char especialidad)
 {
     Doctor aux;
-    aux.enfermedad = " ";
+    aux.enfermedad = "-1";
     aux.especialidad = '-1';
-    aux.id_doctor = " ";
-    aux.nombreDoc = " ";
+    aux.id_doctor = "-1";
+    aux.nombreDoc = "-1";
 
     int code;
 

@@ -40,9 +40,9 @@ Paciente ColaPacientes::ExtraerPaciente()
 {
     Paciente extraido;
     if (principio == NULL) {
-        extraido.id_paciente = "";
+        extraido.id_paciente = "-1";
         extraido.nombre = "-1";
-        extraido.enfermedad = "";
+        extraido.enfermedad = "-1";
         return extraido;
     }
     nodo = principio;
