@@ -13,6 +13,7 @@ public:
 	lista_pacientes();
 	~lista_pacientes();
 	void InsertarPaciente(Paciente);
+	void InsertarPacienteFinal(Paciente);
 	Paciente ExtraerInicio();
 	Paciente ExtraerInter(string);
 	Paciente ExtraerFinal();

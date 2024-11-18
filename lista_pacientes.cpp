@@ -21,6 +21,20 @@ void lista_pacientes::InsertarPaciente(Paciente nuevo)
     }
 }
 
+void lista_pacientes::InsertarPacienteFinal(Paciente data)
+{
+    if (final == NULL)
+    {
+        InsertarPaciente(data);
+        return;
+    }
+    nodo = new elemento_lista_pacientes;
+    nodo->datos = data;
+    nodo->siguiente = NULL;
+    final->siguiente = nodo;
+    final = nodo;
+}
+
 Paciente lista_pacientes::ExtraerInicio()
 {
     Paciente aux;

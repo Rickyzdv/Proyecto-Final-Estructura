@@ -265,7 +265,6 @@ int main()
 			else
 			{
 				cout << "No hay pacientes en lista de espera, pasando a la cola normal." << endl;
-				
 			}
 
 			return_paciente = objeto_pacientes.ExtraerPaciente();
